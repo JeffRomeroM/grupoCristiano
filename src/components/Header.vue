@@ -89,7 +89,7 @@
 
 .header{
   width: 100%;
-  position: sticky;
+  position: fixed;
   top: 0;
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -195,14 +195,14 @@
       display: flex;
       cursor: pointer;
       z-index: 10;
-      width: 7%;
+      width: 10%;
       margin-left: 1%;
       justify-content: center;
       align-items: center;
       transition: all .5s ease;
    }
    #icono-menu i{
-      font-size: 35px;
+      font-size: 30px;
    }
   .title{
    display: block;
