@@ -12,7 +12,7 @@
       </a>
 
       <p>Contactanos</p>
-      <a href="wa.me/+50577146128" target="_blank" class="whatsapp">
+      <a href="https://api.whatsapp.com/send/?phone=%2B50577146128&text&type=phone_number&app_absent=0" target="_blank" class="whatsapp">
         <i class="fa-brands fa-square-whatsapp"></i>
       </a>
     </div>
