@@ -7,7 +7,7 @@
     </div>
     <div class="footer--contact">
       <p>Contactenos</p>
-      <a href="https://www.facebook.com/profile.php?id=100089009493102" target="_blank" class="face">
+      <a href="https://www.facebook.com/people/Jeffrin-RM/pfbid02U5ByZ9JBEJNo9PTV5Lwt4thrrRd3VTSbiVpk2rmBprsmaKwr4PPcVTLnK6Uz1W5Yl/" target="_blank" class="face">
         <i class="fa-brands fa-square-facebook"></i>
       </a>
 

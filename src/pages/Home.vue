@@ -1,7 +1,7 @@
 <template>
   <section class="home">
     <div class="home--intro">
-      <img src="../assets/GCLogo.png" alt="">
+      <img src="https://images.pexels.com/photos/10024790/pexels-photo-10024790.jpeg?auto=compress&cs=tinysrgb&w=600" alt="">
       <h1 class="titulo">Aprende de la biblia con ensezanzas, mensajes y refleciones cristianas.</h1>
     </div>
     
@@ -36,7 +36,7 @@
 /* estilos para la seccion home */
 .home{
   width: 100%;
-  margin: auto;
+  margin: 6% auto;
   display: flex;
   flex-wrap: wrap;
 
@@ -45,11 +45,12 @@
 .home--intro{
   width: 95%;
   margin: 30px auto;
-  background-image: url(../assets/unsplash-photo-2.jpg);
   display: flex;
   flex-wrap: wrap;
   border-radius: 5px;
-  animation: fondo 5s alternate infinite;
+}
+.home--intro img{
+  width: 95%;
 }
 @keyframes fondo {
   20%{
@@ -66,14 +67,13 @@
   text-align: center;
   margin-top: 10px;
   animation: color 4s alternate infinite;
-  color: white;
+
 }
 
 .p{
   width: 100%;
   text-align: center;
   margin-top: 10px;
-  color: white;
   font-size: 20px;
   animation: espacio 4s alternate infinite;
     letter-spacing: 2px;

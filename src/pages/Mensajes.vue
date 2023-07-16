@@ -212,7 +212,7 @@ export default {
   }
   .modal{
     margin-top: 6%;
-    width: 80%;
+    width: 9 0%;
   }
   .modal--intro{
   display: flex;
