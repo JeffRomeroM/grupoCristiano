@@ -11,11 +11,16 @@
 
   },
   methods: {
+   ejecutarFunciones() {
+      this.toggleDropdown();
+      this.alternarMenu();
+   },
+
    toggleDropdown() {
       this.showDropdown = !this.showDropdown;
     },
 
-    alternarMenu() {
+   alternarMenu() {
       // this.color = this.color === 'red' ? 'green' : 'red'
       this.menu = this.menu === 'menu--open' ? 'menu--close' : 'menu--open'
 
@@ -59,7 +64,7 @@
                <router-link to="/reflecciones" @click="alternarMenu">Refleciones</router-link>
             </li>
 
-            <li @mouseover="toggleDropdown" class="li">Multimedia <i class="arrow-down"></i></li>
+            <li @click="toggleDropdown" class="li" >Multimedia <i class="arrow-down"></i></li>
             
             
             
@@ -67,13 +72,13 @@
          <div v-if="showDropdown" class="dropdown">
             <ul>
             <li>
-               <router-link to="/imagenes" @click="alternarMenu">Imagenes</router-link>
+               <router-link to="/imagenes" @click="ejecutarFunciones">Imagenes</router-link>
             </li>
             <li>
-               <router-link to="/imagenes" @click="alternarMenu">Imagenes</router-link>
+               <router-link to="/imagenes" @click="ejecutarFunciones">Imagenes</router-link>
             </li>
             <li>
-               <router-link to="/imagenes" @click="alternarMenu">Imagenes</router-link>
+               <router-link to="/imagejecutarFuncionestoggleDropdown">Imagenes</router-link>
             </li>
             </ul>
          </div>
@@ -95,7 +100,7 @@
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   display: flex;
   justify-content: space-between;
-  z-index: 1;
+  z-index: 10;
 }
 .arrow-down {
   display: inline-block;
@@ -172,6 +177,8 @@
 .li{
    font-size: 23px;
    margin-right: 5px;
+   cursor: pointer;
+   font-weight: 500;
 }
 .li i{
    font-size: 29px;
@@ -203,6 +210,7 @@
    }
    #icono-menu i{
       font-size: 30px;
+      
    }
   .title{
    display: block;
@@ -282,7 +290,7 @@
    .nav--angelita{
       display: block;
       width: 85%;
-      margin:15% auto 5%;
+      margin:28% auto 5%;
       height: 20vh;
       border-radius: 10px;
    }
@@ -300,6 +308,7 @@
       width: 50%;
       overflow-x:auto;
    }  
+   
 }
 
 </style>

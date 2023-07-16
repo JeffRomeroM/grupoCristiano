@@ -1,194 +1,235 @@
 <template>
-    <div class="productos">
- 
-      <div class="productos--buscar">
- 
-       
-        <h1>Los mejores calzados </h1> 
-         
-        <input type="text" v-model="buscar"
-        class="productos--buscar-input" placeholder="Buscar calzado"/>
-
-      </div>
- 
-      <div class="productos--contenedor">
- 
-        <div class="productos--contenedor-detalle" v-for="item in items" v-bind:key="item.id">
-        
- 
-          <div>
-            <img :src="item.img" v-bind:alt="item.name">
-
-            
-           
-            <h2 class="name">{{ item.name }}</h2>
-            
-            <p>
-              <strong>Descripcion:</strong> {{ item.description }} 
-            </p>
-
-            <p>
-              <strong>Promocion:</strong> {{ item.promocion }} 
-            </p>
-
-            <p>
-              <strong>Marca:</strong> {{ item.marca }} 
-            </p>
-
-            <div class="comprar">
-              <router-link to="/mensajes" >Ver mas
-              </router-link>
-            </div>
-          
-        </div>
- 
-        </div>
- 
-      </div>
- 
-    </div>
- </template>
- 
- <script>
-//  importamos el archivo .json de productos
- import datos from "../assets/json/mensajes.json";
- 
- export default {
- 
-  
-   data() {
-     return {
-       buscar: ''
-     }
-   },
-  //buscamos productos por el nombre 
-   computed: {
-     items() {
-       return datos.filter(item => {
-         return item.name.toLowerCase().includes(this.buscar.toLowerCase());
-       });
-     },
- 
-   }
+  <div class="enseñanzas">
+    
+    <h1>Mensajes Cristianos</h1>
    
- }
- 
- </script>
- 
+      <div class="enseñanzas--detalle" v-for="producto in productos" :key="producto.id">
+        <img :src="producto.img" v-bind:alt="producto.name">
+        <h2>{{ producto.name }}</h2>
+        
+        <button @click="abrirModal(producto)">Ver detalles</button>
+      </div>
 
- <style>
- /* estilos para el contenedor de productos*/
-.productos{
-  width: 90%;
-  margin: auto;
-  margin-top: 20px;
-}
-/* estilos para el buscador*/
-.productos--buscar{
-  width: 100%;
-  margin: auto;
+
+    <div v-if="modalVisible" class="modal">
+      <div class="modal--intro">
+        <div>
+          <h3>{{ productoSeleccionado.name }}</h3>
+        
+          <p>{{ productoSeleccionado.citaPrincipal }}</p>
+        </div>
+        <img :src="productoSeleccionado.img" v-bind:alt="productoSeleccionado.name">
+      </div>
+      <p>{{ productoSeleccionado.introduccion }}</p>
+      <p>{{ productoSeleccionado.texto }}</p>
+      <button @click="cerrarModal">Cerrar</button>
+    </div>
+  </div>
+</template>
+
+<script>
+import productosData from '../assets/json/mensajes.json';
+
+export default {
+  data() {
+    return {
+      productos: [],
+      modalVisible: false,
+      productoSeleccionado: null
+    };
+  },
+  mounted() {
+    this.productos = productosData;
+  },
+  methods: {
+    abrirModal(producto) {
+      this.modalVisible = true;
+      this.productoSeleccionado = producto;
+    },
+    cerrarModal() {
+      this.modalVisible = false;
+      this.productoSeleccionado = null;
+    },
+    
+  }
+};
+</script>
+<style>
+.enseñanzas{
+  width:98%;
+  margin:6% auto;
+  text-align:center;
+  padding:2rem;
+  border-radius:.4em;
+  box-shadow: rgba(17, 17, 26,.2);
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  padding: 10px auto;
+  box-sizing: border-box;
+
 }
-.productos--buscar h1{
+.enseñanzas h1{
   width: 100%;
   text-align: center;
 }
-.productos--buscar-input{
-  width: 50%;
-  text-align: center;
+
+.enseñanzas--detalle{
+  -webkit-box-shadow: 1px 2px 17px -1px rgba(0,0,0,0.75);
+  -moz-box-shadow: 1px 2px 17px -1px rgba(0,0,0,0.75);
+  box-shadow: 1px 2px 17px -1px rgba(0,0,0,0.75);
+  border-radius: 10px;
+  width: 24%;
+  margin:10px auto;
+
+}
+.enseñanzas--detalle img{
+  width: 100%;
+  height: 240px;
+  border-radius: 10px 10px 0px 0px;
+}
+.enseñanzas--detalle p{
+  font-size: 30x;
+}
+.enseñanzas--detalle button {
+ padding: 10px 25px;
+ border: unset;
+ border-radius: 15px;
+ color: #212121;
+ z-index: 1;
+ background: #e8e8e8;
+ position: relative;
+ font-weight: 1000;
+ font-size: 17px;
+ -webkit-box-shadow: 4px 8px 19px -3px #95b8f6;
+ box-shadow: 4px 8px 19px -3px#fff  ;
+ transition: all 250ms;
+ overflow: hidden;
+ margin: 10px auto;
+}
+
+.enseñanzas--detalle button::before {
+ content: "";
+ position: absolute;
+ top: 0;
+ left: 0;
+ height: 100%;
+ width: 0;
+ border-radius: 15px;
+ background-color:#95b8f6;
+ z-index: -1;
+ -webkit-box-shadow: 4px 8px 19px -3px #95b8f6;
+ box-shadow: 4px 8px 19px -3px #95b8f6;
+ transition: all 250ms
+}
+
+.enseñanzas--detalle button:hover {
+ color: #e8e8e8;
+}
+
+.enseñanzas--detalle button:hover::before {
+ width: 100%;
+}
+.modal{
+  width: 93.5%;
+  -webkit-box-shadow: 1px 2px 17px -1px rgba(0,0,0,0.75);
+  -moz-box-shadow: 1px 2px 17px -1px rgba(0,0,0,0.75);
+  box-shadow: 1px 2px 17px -1px rgba(0,0,0,0.75);
+  border-radius: 10px;
+  margin: auto;
+  position: absolute;
+  background-color: white;
+  padding: 15px;
+  z-index: 1;
+  box-sizing: border-box;
+
+}
+.modal--intro{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.modal--intro div{
+  margin-top: 10%;
+  font-size: 30px;
+  width: 20%;
+}
+.modal--intro div p{
+  margin-top: 40px;
+}
+.modal--intro img{
   border-radius: 8px;
-  padding: 10px 0px;
-  margin-top: 10px;
-  border: none;
-  outline: none;
-  font-size: 20px;
+  width: 60%;
 }
-/*estilos para cuando se le da click al input*/
-.productos--buscar-input:focus{
-  outline: 3px solid #f9a59a;
+.modal p{
+  font-size: 25px;
 }
-
-.productos--contenedor{
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: 10px;
-}
-/* estilos para cada producto*/
-.productos--contenedor-detalle{
-  width: 30%;
+.modal button {
+  background-color: white;
+  color: black;
+  border-radius: 15px;
+  font-size: 17px;
+  font-weight: 600;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  border: 1px solid red;
+  box-shadow: 0 0 0 0 #95b8f6;
   margin: 10px auto;
-  background-color: white;
-  border-radius: 10px;
-  padding: 10px;
-}
-.productos--contenedor-detalle:hover{
-  box-shadow: 0 0 15px 10px  #fff;
-  background-color: #add5fa;
-  margin-top: 2px;
-}
-.productos--contenedor-detalle .name{
-  width: 100%;
-  text-align: center;
-  padding-top: 10px;
-}
-.productos--contenedor-detalle p{
-  padding-top: 20px;
-  text-align: center;
-  font-size: 20px;
 }
 
-.productos--contenedor-detalle img{
-  width: 80%;
-  margin-left: 10%;
-  height: 30vh;
-  border-radius: 10px;
-}
-.productos--contenedor-detalle .comprar{
-  width: 100%;
-  display: flex;
-  background-color: #f9a59a;
-  padding: 20px 0px;
-  border-radius: 10px;
-  justify-content: center;
-  margin-top: 10px;
+.modal button:hover {
+  transform: translateY(-4px) translateX(-2px);
+  box-shadow: 2px 5px 0 0 red;
+};
 
-}
-.productos--contenedor-detalle .comprar a{
-  padding: 5px 10px;
-  background-color: white;
-  border-radius: 5px;
-  text-decoration: none;
-  color: #4fa8fb;
-  font-weight: 700;
-}
-.productos--contenedor-detalle .comprar a:hover{
-  color: #4fa8fb;
-  background-color: #4fa8fb;
-  outline: 3px solid white;
-  color: white;
-}
+.modal button:active {
+  transform: translateY(2px) translateX(1px);
+  box-shadow: 0 0 0 0 red;
+};
+
 /* modo responsive para mitad de pantalla de pc*/
 @media only screen and (max-width: 800px){
-  .productos--buscar-input{
-    width: 70%;
-  
-  }
-  .productos--contenedor-detalle{
-    width: 45%;
-    margin: 10px auto;
+  .enseñanzas--detalle{
+    -webkit-box-shadow: 1px 2px 17px -1px rgba(0,0,0,0.75);
+    -moz-box-shadow: 1px 2px 17px -1px rgba(0,0,0,0.75);
+    box-shadow: 1px 2px 17px -1px rgba(0,0,0,0.75);
+    border-radius: 10px;
+    width: 30%;
+    margin:10px auto;
+    border: 3px solid red;
+
   }
 }
 /* modo responsive para movil*/
 @media only screen and (max-width: 520px){
-  .productos--buscar-input{
-    width: 90%;
+  .enseñanzas--detalle{
+  
+    border-radius: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    margin:10px auto;
+
   }
-  .productos--contenedor-detalle{
+  .modal{
+    margin-top: 6%;
+    width: 80%;
+  }
+  .modal--intro{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+  .modal--intro div{
+    margin-top: 10%;
+    font-size: 30px;
+    width: 100%;
+  }
+  .modal--intro div p{
+    margin-top: 40px;
+  }
+  .modal--intro img{
+    border-radius: 8px;
     width: 90%;
   }
 }
 </style>
- 

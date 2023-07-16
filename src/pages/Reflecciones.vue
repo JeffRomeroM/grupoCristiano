@@ -1,71 +1,235 @@
 <template>
-  <section class="contactos">
-    <div class="contactos--item">
-      <p>Puedes seguirnos en facebook</p>
-      <i class="fa-brands fa-square-facebook"></i>
+  <div class="enseñanzas">
+    
+    <h1>Mensajes Cristianos</h1>
+   
+      <div class="enseñanzas--detalle" v-for="producto in productos" :key="producto.id">
+        <img :src="producto.img" v-bind:alt="producto.name">
+        <h2>{{ producto.name }}</h2>
+        
+        <button @click="abrirModal(producto)">Ver detalles</button>
+      </div>
+
+
+    <div v-if="modalVisible" class="modal">
+      <div class="modal--intro">
+        <div>
+          <h3>{{ productoSeleccionado.name }}</h3>
+        
+          <p>{{ productoSeleccionado.citaPrincipal }}</p>
+        </div>
+        <img :src="productoSeleccionado.img" v-bind:alt="productoSeleccionado.name">
+      </div>
+      <p>{{ productoSeleccionado.introduccion }}</p>
+      <p>{{ productoSeleccionado.texto }}</p>
+      <button @click="cerrarModal">Cerrar</button>
     </div>
-    <div class="contactos--item">
-      <p>Puedes contactarnos en whatsapp</p>
-      <i class="fa-brands fa-square-whatsapp"></i>
-    </div>
-  </section>
+  </div>
 </template>
+
+<script>
+import productosData from '../assets/json/mensajes.json';
+
+export default {
+  data() {
+    return {
+      productos: [],
+      modalVisible: false,
+      productoSeleccionado: null
+    };
+  },
+  mounted() {
+    this.productos = productosData;
+  },
+  methods: {
+    abrirModal(producto) {
+      this.modalVisible = true;
+      this.productoSeleccionado = producto;
+    },
+    cerrarModal() {
+      this.modalVisible = false;
+      this.productoSeleccionado = null;
+    },
+    
+  }
+};
+</script>
 <style>
-.contactos{
-  width: 90%;
+.enseñanzas{
+  width:98%;
+  margin:6% auto;
+  text-align:center;
+  padding:2rem;
+  border-radius:.4em;
+  box-shadow: rgba(17, 17, 26,.2);
   display: flex;
   flex-wrap: wrap;
-  margin: 10px auto;
-  border-radius: 5px;
-  margin-top: 10%;
-  margin-bottom: 10%;
+  padding: 10px auto;
+  box-sizing: border-box;
+
 }
-.contactos--item{
-  width: 30%;
-  background-color: aliceblue;
-  margin: 10px auto;
-  padding: 40px 0px;
-  border-radius: 10px;
-}
-.contactos--item p{
+.enseñanzas h1{
+  width: 100%;
   text-align: center;
-  font-size: 20px;
-  padding: 10px;
+}
+
+.enseñanzas--detalle{
+  -webkit-box-shadow: 1px 2px 17px -1px rgba(0,0,0,0.75);
+  -moz-box-shadow: 1px 2px 17px -1px rgba(0,0,0,0.75);
+  box-shadow: 1px 2px 17px -1px rgba(0,0,0,0.75);
+  border-radius: 10px;
+  width: 24%;
+  margin:10px auto;
 
 }
-.contactos--item .fa-square-facebook{
-  font-size: 90px;
-  width: 30%;
-  margin-left: 35%;
-  margin-top: 10px;
+.enseñanzas--detalle img{
+  width: 100%;
+  height: 240px;
+  border-radius: 10px 10px 0px 0px;
+}
+.enseñanzas--detalle p{
+  font-size: 30x;
+}
+.enseñanzas--detalle button {
+ padding: 10px 25px;
+ border: unset;
+ border-radius: 15px;
+ color: #212121;
+ z-index: 1;
+ background: #e8e8e8;
+ position: relative;
+ font-weight: 1000;
+ font-size: 17px;
+ -webkit-box-shadow: 4px 8px 19px -3px #95b8f6;
+ box-shadow: 4px 8px 19px -3px#fff  ;
+ transition: all 250ms;
+ overflow: hidden;
+ margin: 10px auto;
+}
+
+.enseñanzas--detalle button::before {
+ content: "";
+ position: absolute;
+ top: 0;
+ left: 0;
+ height: 100%;
+ width: 0;
+ border-radius: 15px;
+ background-color:#95b8f6;
+ z-index: -1;
+ -webkit-box-shadow: 4px 8px 19px -3px #95b8f6;
+ box-shadow: 4px 8px 19px -3px #95b8f6;
+ transition: all 250ms
+}
+
+.enseñanzas--detalle button:hover {
+ color: #e8e8e8;
+}
+
+.enseñanzas--detalle button:hover::before {
+ width: 100%;
+}
+.modal{
+  width: 93.5%;
+  -webkit-box-shadow: 1px 2px 17px -1px rgba(0,0,0,0.75);
+  -moz-box-shadow: 1px 2px 17px -1px rgba(0,0,0,0.75);
+  box-shadow: 1px 2px 17px -1px rgba(0,0,0,0.75);
+  border-radius: 10px;
+  margin: auto;
+  position: absolute;
+  background-color: white;
+  padding: 15px;
+  z-index: 1;
+  box-sizing: border-box;
+
+}
+.modal--intro{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.modal--intro div{
+  margin-top: 10%;
+  font-size: 30px;
+  width: 20%;
+}
+.modal--intro div p{
+  margin-top: 40px;
+}
+.modal--intro img{
+  border-radius: 8px;
+  width: 60%;
+}
+.modal p{
+  font-size: 25px;
+}
+.modal button {
+  background-color: white;
+  color: black;
+  border-radius: 15px;
+  font-size: 17px;
+  font-weight: 600;
+  padding: 10px 20px;
   cursor: pointer;
-  color: blue;
+  transition: all 0.3s ease-in-out;
+  border: 1px solid red;
+  box-shadow: 0 0 0 0 #95b8f6;
+  margin: 10px auto;
 }
 
-.contactos--item .fa-square-whatsapp{
-  font-size: 90px;
-  width: 30%;
-  margin-left: 35%;
-  margin-top: 10px;
-  cursor: pointer;
-  color: green;
-}
+.modal button:hover {
+  transform: translateY(-4px) translateX(-2px);
+  box-shadow: 2px 5px 0 0 red;
+};
 
-.contactos--item:hover{
-  background-color:  #95b8f6;
-  box-shadow: 0 0 16px white;
-}
+.modal button:active {
+  transform: translateY(2px) translateX(1px);
+  box-shadow: 0 0 0 0 red;
+};
+
+/* modo responsive para mitad de pantalla de pc*/
 @media only screen and (max-width: 800px){
-  .contactos--item{
-    width: 40%;
-  }
-  
+  .enseñanzas--detalle{
+    -webkit-box-shadow: 1px 2px 17px -1px rgba(0,0,0,0.75);
+    -moz-box-shadow: 1px 2px 17px -1px rgba(0,0,0,0.75);
+    box-shadow: 1px 2px 17px -1px rgba(0,0,0,0.75);
+    border-radius: 10px;
+    width: 30%;
+    margin:10px auto;
+    border: 3px solid red;
 
+  }
 }
+/* modo responsive para movil*/
 @media only screen and (max-width: 520px){
-  .contactos--item{
+  .enseñanzas--detalle{
+  
+    border-radius: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    margin:10px auto;
+
+  }
+  .modal{
+    margin-top: 6%;
+    width: 80%;
+  }
+  .modal--intro{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+  .modal--intro div{
+    margin-top: 10%;
+    font-size: 30px;
+    width: 100%;
+  }
+  .modal--intro div p{
+    margin-top: 40px;
+  }
+  .modal--intro img{
+    border-radius: 8px;
     width: 90%;
   }
 }
- 
 </style>

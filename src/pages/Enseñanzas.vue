@@ -1,14 +1,18 @@
 <template>
-   <section class="loNuevo">
+   <section class="mensajes">
 
-      <h3>Nuevo</h3>
-      <div class="loNuevo--product">
-        
-         <img src="https://images.pexels.com/photos/3184289/pexels-photo-3184289.jpeg?auto=compress&cs=tinysrgb&w=600" alt="tommy">
+      <h3>Mensajes</h3>
+      <div class="mensajes--detalles">
          <h3>Aprende</h3>
-         <button @click="abrirProd">Detalles</button>
+         <img src="https://images.pexels.com/photos/3184289/pexels-photo-3184289.jpeg?auto=compress&cs=tinysrgb&w=600" alt="tommy">
+         
+         <button @click="abrirProd">Leer</button>
 
-         <div :class="prod">
+         
+         
+
+      </div>
+      <div :class="prod">
             <p>
               <strong>Cita:</strong> Juan 
             </p>
@@ -20,41 +24,39 @@
               <router-link to="/enseñanzas" >Ver mas
               </router-link>
             </div>
+            <button @click="abrirProd">Cerrar</button>
          </div>
-         
-
-      </div>
    </section>
 </template>
 <style>
-.loNuevo{
+.mensajes{
    width: 90%;
    margin: 10px auto;
    display: flex;
    flex-wrap: wrap;
 
 }
-.loNuevo h3{
+.mensajes h3{
    width: 100%;
    margin: 10px auto;
    text-align: center;
 
 
 }
-.loNuevo--product{
+.mensajes--detalles{
    width: 40%;
    margin: 10% auto;
    background-color: aqua;
    border-radius: 10px;
 }
-.loNuevo--product img{
+.mensajes--detalles img{
    width: 80%;
    margin-left: 10%;
    margin-top: 10px;
    border-radius: 10px;
    height: 20vh;
 }
-.loNuevo--product button{
+.mensajes--detalles button{
    width: 30%;
    margin: 30px 35%;
    padding: 5px 15px;
@@ -74,11 +76,13 @@
    }
 
 .prod--open{
-   display: flex;
-   width: 100%;
-   flex-wrap: wrap;
-   text-align: center;
-   transition: all .5s ease;
+   width: 90%;
+   margin: 6% auto;
+   position: absolute;
+  border-radius: 10px;
+   -webkit-box-shadow: 1px 2px 17px -1px rgba(0,0,0,0.75);
+   -moz-box-shadow: 1px 2px 17px -1px rgba(0,0,0,0.75);
+   box-shadow: 1px 2px 17px -1px rgba(0,0,0,0.75);
 }
 .prod--open p{
    text-align: left;
