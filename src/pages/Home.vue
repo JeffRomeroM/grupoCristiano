@@ -24,7 +24,7 @@
  
 
       <div class="button">
-        <router-link to="/imagenes" class="dropdown-item">Ver mas Imagenes</router-link>
+        <router-link to="/mensajes" class="dropdown-item">Ver mensajes cristianos</router-link>
       </div>
 
     </div>
