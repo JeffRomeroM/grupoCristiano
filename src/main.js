@@ -7,6 +7,7 @@ import Mensajes from "./pages/Mensajes.vue";
 import Enseñanzas from "./pages/Enseñanzas.vue";
 import Reflecciones from "./pages/Reflecciones.vue";
 import Imagenes from "./pages/Imagenes.vue";
+import Game2Page from "./pages/Game2Page.vue";
 
 
 
@@ -16,6 +17,7 @@ const routes = [
   { path: "/enseñanzas", component: Enseñanzas },
   { path: "/reflecciones", component: Reflecciones },
   { path: "/imagenes", component: Imagenes },
+  { path: "/juegos", component: Game2Page },
 
 ];
 

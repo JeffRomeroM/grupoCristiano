@@ -72,7 +72,7 @@
          <div v-if="showDropdown" class="dropdown">
             <ul>
             <li>
-               <router-link to="/imagenes" @click="ejecutarFunciones">Imagenes</router-link>
+               <router-link to="/juegos" @click="ejecutarFunciones">Juegos</router-link>
             </li>
             <li>
                <router-link to="/imagenes" @click="ejecutarFunciones">Imagenes</router-link>
