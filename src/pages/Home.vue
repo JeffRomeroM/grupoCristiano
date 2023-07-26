@@ -1,16 +1,19 @@
 <template>
+  
   <section class="home">
-    <div class="home--intro">
+    <div class="home--intro" >
       <img src="https://images.pexels.com/photos/10024790/pexels-photo-10024790.jpeg?auto=compress&cs=tinysrgb&w=600" alt="">
       <h1 class="titulo">Aprende de la biblia con ensezanzas, mensajes y refleciones cristianas.</h1>
     </div>
     
-    <div class="home--info">
-      <div class="home--info-detalle">
+    <div class="home--info zoom-on-scroll">
+      <div class="zoom" :style="{ transform: 'scale(' + zoomLevel + ')' }">
+        <div class="home--info-detalle">
         <p class="intro">Te presentamos un conjunto de breves enseñanzas para que aprendas sobre Dios.</p>
         <p>Tambien puedes encontrar mensajes y reflecciones</p>
       </div>
       <img src="../assets/GCLogo.png" alt="">
+      </div>
 
     </div>
   
@@ -41,6 +44,15 @@
   flex-wrap: wrap;
 
 }
+.zoom-on-scroll {
+    height: 400px; /* Ajusta la altura según tus necesidades */
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    overflow: hidden;
+  }
+  
 /* estilos para home-intro  y el cambio de imagenes en el fondo*/
 .home--intro{
   width: 95%;
@@ -91,10 +103,19 @@
   background-color: #95b8f6;
   border-radius: 60px 4px 60px 4px;
 }
-
+.zoom{
+  display: flex;
+}
 .home--info-detalle{
   width: 40%;
   padding: 20px;
+  
+}
+.home--info-detalle zoom{
+  width: 40%;
+  padding: 20px;
+  display: flex;
+
 }
 .home--info-detalle .intro{
   text-align: center;
@@ -250,3 +271,32 @@
 
 }
 </style>
+<script>
+  export default {
+    data() {
+      return {
+        zoomLevel: 1, // Valor inicial del zoom
+        
+      };
+    },
+    mounted() {
+      window.addEventListener('scroll', this.handleScroll);
+    },
+    beforeDestroy() {
+      window.removeEventListener('scroll', this.handleScroll);
+    },
+    methods: {
+      handleScroll() {
+        // Ajusta estos valores para cambiar la intensidad del zoom
+        const maxZoomLevel = 1.5; // Zoom máximo que se alcanzará
+        const scrollThreshold = 2000; // Umbral de scroll para llegar al zoom máximo
+  
+        // Calcula el nuevo nivel de zoom en función del scroll
+        const scrollY = window.scrollY;
+        const newZoomLevel = Math.min(maxZoomLevel, 1 + scrollY / scrollThreshold);
+  
+        this.zoomLevel = newZoomLevel;
+      },
+    },
+  };
+  </script>
