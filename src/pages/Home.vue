@@ -9,10 +9,10 @@
     <div class="home--info zoom-on-scroll">
       <div class="zoom" :style="{ transform: 'scale(' + zoomLevel + ')' }">
         <div class="home--info-detalle">
-        <p class="intro">Te presentamos un conjunto de breves enseñanzas para que aprendas sobre Dios.</p>
-        <p>Tambien puedes encontrar mensajes y reflecciones</p>
-      </div>
-      <img src="../assets/GCLogo.png" alt="">
+          <p class="intro">Te presentamos un conjunto de breves enseñanzas para que aprendas sobre Dios.</p>
+          <p>Tambien puedes encontrar mensajes y reflecciones</p>
+        </div>
+        <img src="../assets/GCLogo.png" alt="">
       </div>
 
     </div>
@@ -105,6 +105,11 @@
 }
 .zoom{
   display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.zoom img{
+  width: 100%;
 }
 .home--info-detalle{
   width: 40%;
@@ -190,7 +195,7 @@
 /* estilos para contenedor de productos y los link a otras vistas*/
 .home--product{
   width: 95%;
-  margin:10px auto;
+  margin:40px auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
@@ -252,6 +257,9 @@
   width: 40%;
   margin: 10px auto;
   border-radius: 10px;
+ }
+ .zoom img{
+  width: 100%;
  }
  
 }
