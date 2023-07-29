@@ -4,7 +4,7 @@ This template should help get you started developing with Vue 3 in Vite. The tem
 
 ## view demo
 
-grupocristiano.vercel.app
+.[grupocristiano.vercel.app]
 
 ## Recommended IDE Setup
 
